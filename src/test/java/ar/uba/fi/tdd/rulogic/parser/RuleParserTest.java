@@ -33,6 +33,7 @@ public class RuleParserTest {
                 Arrays.asList("X", "Y"),
                 Arrays.asList(
                         new Fact("male", Arrays.asList("X")),
+                        new Fact("male", Arrays.asList("Y")),
                         new Fact("father", Arrays.asList("Y", "X"))));
         Rule actual = ruleParser.parse("son(X, Y) :- male(X), male(Y), father(Y, X).");
 
