@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class FactTest {
 
     @Test
-    public void testEqualsonSameFact() throws Exception {
+    public void testEqualsOnSameFact() throws Exception {
         Fact fact1 = new Fact("male", Arrays.asList("seldon"));
 
         Assert.assertTrue(fact1.equals(fact1));
