@@ -19,6 +19,7 @@ public class RuleParserTest {
     @Test
     public void testValidWithValidRule() throws Exception {
         Assert.assertTrue(ruleParser.valid("son(X, Y) :- male(X), male(Y), father(Y, X)."));
+        Assert.assertTrue(ruleParser.valid("uncle(X, Y, Z) :- male(X), brother(X, Z), father(Z, Y)."));
     }
 
     @Test
