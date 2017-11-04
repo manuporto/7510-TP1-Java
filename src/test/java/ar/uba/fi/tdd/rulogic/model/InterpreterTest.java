@@ -38,7 +38,7 @@ public class InterpreterTest {
 
 
 	@Test
-	public void testWithExistingFacts() {
+	public void testWithExistingFacts() throws Exception {
 	    Assert.assertTrue(this.interpreter.answer("varon(juan)"));
 	    Assert.assertTrue(this.interpreter.answer("mujer(maria)"));
 	    Assert.assertTrue(this.interpreter.answer("padre(juan, pepa)"));
@@ -49,5 +49,23 @@ public class InterpreterTest {
 	    Assert.assertFalse(this.interpreter.answer("padre(juan, pepita)"));
 	    Assert.assertFalse(this.interpreter.answer("varon(federico)"));
 	    Assert.assertFalse(this.interpreter.answer("mujer(alejandro)"));
+    }
+
+    @Test
+    public void testWithExistingRules() throws Exception {
+	    Assert.assertTrue(this.interpreter.answer("hijo(pepe, juan)"));
+	    Assert.assertTrue(this.interpreter.answer("hija(cecilia, roberto)"));
+    }
+
+    @Test
+    public void testWithFalseRules() throws Exception {
+	    Assert.assertFalse(this.interpreter.answer("hija(maria, roberto)"));
+	    Assert.assertFalse(this.interpreter.answer("hijo(hector, juan)"));
+    }
+
+    @Test
+    public void testWithNonExistingRules() throws Exception {
+	    Assert.assertFalse(this.interpreter.answer("nieto(pepe, hector)"));
+	    Assert.assertFalse(this.interpreter.answer("nieta(maria, hector)"));
     }
 }

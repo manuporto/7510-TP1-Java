@@ -1,5 +1,6 @@
 package ar.uba.fi.tdd.rulogic.parser;
 
+import ar.uba.fi.tdd.rulogic.exceptions.InvalidDatabaseException;
 import ar.uba.fi.tdd.rulogic.model.Database;
 import ar.uba.fi.tdd.rulogic.model.Fact;
 import ar.uba.fi.tdd.rulogic.model.Rule;
@@ -27,10 +28,13 @@ public class DatabaseParser {
                 .contains(false);
     }
 
-    public Database parse(List<String> rawDb) {
+    public Database parse(List<String> rawDb) throws InvalidDatabaseException {
         List<Fact> facts = new ArrayList<>();
         List<Rule> rules = new ArrayList<>();
 
+        if (!this.valid(rawDb)) {
+            throw new InvalidDatabaseException("The selected database contains rules or facts with invalid syntax.");
+        }
         rawDb.forEach(statement -> {
             if (this.factParser.valid(statement)) {
                 facts.add(this.factParser.parse(statement));
